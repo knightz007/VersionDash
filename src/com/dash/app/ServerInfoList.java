@@ -12,8 +12,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 
-import com.dash.apputil.ReleaseArtifactInfo;
 import com.dash.apputil.queryDB;
+import com.dash.beans.ReleaseArtifactInfo;
 
 /**
  * Servlet implementation class ServerInfoList

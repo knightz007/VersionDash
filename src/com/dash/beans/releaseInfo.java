@@ -1,4 +1,4 @@
-package com.dash.apputil;
+package com.dash.beans;
 
 public class releaseInfo {
 

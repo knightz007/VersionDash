@@ -2,12 +2,8 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>VersionDash</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>home</welcome-file>
+    <welcome-file>indextest.html</welcome-file>
   </welcome-file-list>
   <servlet>
     <servlet-name>TestServlet</servlet-name>
@@ -17,4 +13,12 @@
     <servlet-name>TestServlet</servlet-name>
     <url-pattern>/hello</url-pattern>
   </servlet-mapping>
+  <filter-mapping>
+    <filter-name>jdbcFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>cookieFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 </web-app>

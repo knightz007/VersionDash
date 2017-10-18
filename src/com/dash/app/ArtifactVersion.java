@@ -13,11 +13,11 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 
-import com.dash.apputil.ComponentInfo;
-import com.dash.apputil.ReleaseArtifactInfo;
-import com.dash.apputil.ServerInfo;
 import com.dash.apputil.queryDB;
-import com.dash.apputil.releaseInfo;
+import com.dash.beans.ComponentInfo;
+import com.dash.beans.ReleaseArtifactInfo;
+import com.dash.beans.ServerInfo;
+import com.dash.beans.releaseInfo;
 import com.dash.dbutil.DbConnector;
 
 /**

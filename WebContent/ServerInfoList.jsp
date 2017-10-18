@@ -1,6 +1,6 @@
  <%@ include file="header.jsp" %>
  <title>Server List</title>
-<%@ page import="com.dash.apputil.ServerInfo,com.dash.apputil.queryDB" %>
+<%@ page import="com.dash.beans.ServerInfo,com.dash.apputil.queryDB" %>
  <script type="text/javascript">
  $(document).ready(function() {
 	    $('#servers').DataTable();
