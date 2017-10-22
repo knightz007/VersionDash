@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
         // Forward to /WEB-INF/views/loginView.jsp
         // (Users can not access directly into JSP pages placed in WEB-INF)
         RequestDispatcher dispatcher //
-                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
+                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginViewNew.jsp");
  
         dispatcher.forward(request, response);
  
@@ -46,7 +46,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String userName = request.getParameter("userName");
+        String email = request.getParameter("Email");
         String password = request.getParameter("password");
         String rememberMeStr = request.getParameter("rememberMe");
         boolean remember = "Y".equals(rememberMeStr);
@@ -55,18 +55,18 @@ public class LoginServlet extends HttpServlet {
         boolean hasError = false;
         String errorString = null;
  
-        if (userName == null || password == null || userName.length() == 0 || password.length() == 0) {
+        if (email == null || password == null || email.length() == 0 || password.length() == 0) {
             hasError = true;
-            errorString = "Required username and password!";
+            errorString = "Required email and password!";
         } else {
             Connection conn = UserUtil.getStoredConnection(request);
             try {
                 // Find the user in the DB.
-                user = DBUtils.findUser(conn, userName, password);
+                user = DBUtils.findUserByEmail(conn, email, password);
  
                 if (user == null) {
                     hasError = true;
-                    errorString = "User Name or password invalid";
+                    errorString = "Email or password invalid";
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -77,7 +77,7 @@ public class LoginServlet extends HttpServlet {
         // If error, forward to /WEB-INF/views/login.jsp
         if (hasError) {
             user = new UserAccount();
-            user.setUserName(userName);
+            user.setEmail(email);
             user.setPassword(password);
  
             // Store information in request attribute, before forward.
@@ -86,7 +86,7 @@ public class LoginServlet extends HttpServlet {
  
             // Forward to /WEB-INF/views/login.jsp
             RequestDispatcher dispatcher //
-                    = this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginView.jsp");
+                    = this.getServletContext().getRequestDispatcher("/WEB-INF/views/loginViewNew.jsp");
  
             dispatcher.forward(request, response);
         }
@@ -107,7 +107,7 @@ public class LoginServlet extends HttpServlet {
             }
  
             // Redirect to userInfo page.
-            response.sendRedirect(request.getContextPath() + "/userInfo");
+            response.sendRedirect(request.getContextPath() + "/ArtifactVersion");
         }
     }
  

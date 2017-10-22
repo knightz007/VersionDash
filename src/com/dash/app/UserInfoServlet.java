@@ -46,7 +46,7 @@ public class UserInfoServlet extends HttpServlet {
         // If the user has logged in, then forward to the page
         // /WEB-INF/views/userInfoView.jsp
         RequestDispatcher dispatcher //
-                = this.getServletContext().getRequestDispatcher("/WEB-INF/views/userInfoView.jsp");
+                = this.getServletContext().getRequestDispatcher("/ArtifactVersion");
         dispatcher.forward(request, response);
  
     }

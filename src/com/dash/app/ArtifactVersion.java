@@ -12,11 +12,15 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import com.dash.apputil.UserUtil;
 import com.dash.apputil.queryDB;
 import com.dash.beans.ComponentInfo;
 import com.dash.beans.ReleaseArtifactInfo;
 import com.dash.beans.ServerInfo;
+import com.dash.beans.UserAccount;
 import com.dash.beans.releaseInfo;
 import com.dash.dbutil.DbConnector;
 
@@ -44,6 +48,14 @@ public class ArtifactVersion extends GenericServlet {
 		
 		try {
 			
+			HttpServletRequest httpreq = (HttpServletRequest)request;
+			HttpSession session = httpreq.getSession();
+			UserAccount loginedUser = UserUtil.getLoginedUser(session);
+			
+			if (loginedUser != null) {
+				request.setAttribute("user", loginedUser);
+	        }
+			
 			PrintWriter out = response.getWriter();
 			
 			List<ReleaseArtifactInfo> releaseartifactList = queryDB.getReleaseArtifactInfoList();
@@ -70,7 +82,7 @@ public class ArtifactVersion extends GenericServlet {
 			request.setAttribute("currentRelease", currentRelease);
 		    //request.setAttribute("releaseList", releaseInfoList);
 			
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/ReleaseArtifactView.jsp");
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/ReleaseArtifactView.jsp");
 		    dispatcher.forward(request, response);	    
 			
 			

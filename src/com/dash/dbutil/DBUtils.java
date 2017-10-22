@@ -9,6 +9,28 @@ import com.dash.beans.UserAccount;
 
 public class DBUtils {
 	
+    public static UserAccount findUserByEmail(Connection conn, //
+            String Email, String password) throws SQLException {
+ 
+        String sql = "Select a.User_Name, a.Password, a.Email from User_Account a " //
+                + " where a.Email= ? and a.password= ?";
+ 
+        PreparedStatement pstm = conn.prepareStatement(sql);
+        pstm.setString(1, Email);
+        pstm.setString(2, password);
+        ResultSet rs = pstm.executeQuery();
+ 
+        if (rs.next()) {
+            String userName = rs.getString("User_Name");
+            UserAccount user = new UserAccount();
+            user.setUserName(userName);
+            user.setPassword(password);
+            user.setEmail(Email);
+            return user;
+        }
+        return null;
+    }
+    
     public static UserAccount findUser(Connection conn, //
             String userName, String password) throws SQLException {
  
