@@ -72,13 +72,22 @@ public class ArtifactVersion extends GenericServlet {
 			
 			List<releaseInfo> releaseInfoList = queryDB.getReleaseInfo();
 			String currentRelease = "";
+			int releaseInfoSize = releaseInfoList.size();
+			int releaseInfoIndex = 0;
 			for (releaseInfo rinfo : releaseInfoList) {
+				releaseInfoIndex = releaseInfoIndex + 1;
 				if (rinfo.getIsCurrentRelease().equals("Yes"))
 				{
 					currentRelease = rinfo.getReleaseNumber().toString();
+					break;
 				}
+				else if (releaseInfoIndex == releaseInfoSize)
+				{
+					currentRelease = rinfo.getReleaseNumber().toString();
+				}
+					
 			}
-			
+			//System.out.println("current release" + currentRelease);
 			request.setAttribute("currentRelease", currentRelease);
 		    //request.setAttribute("releaseList", releaseInfoList);
 			

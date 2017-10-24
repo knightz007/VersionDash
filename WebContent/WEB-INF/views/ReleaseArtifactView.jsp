@@ -179,11 +179,11 @@ td.highlight {
        <tbody> 
       		<%        
         		String selectedValue = request.getParameter("selectedValue");
-				String releaseSelect = request.getParameter("test"); 
+     			String releaseSelect =    request.getParameter("test"); 
         		if (releaseSelect == "" || releaseSelect == null)
         		{
         			releaseSelect=currentRelease;        	
-        		}
+        		} 
               for (ReleaseArtifactInfo r: queryDB.getArtifactInfoList(releaseSelect)){ %>              
                     <tr>
 	                    <td><%=r.getRelease()%></td>
