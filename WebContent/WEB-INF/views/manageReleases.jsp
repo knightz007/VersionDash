@@ -3,39 +3,70 @@
 <title>Set Current Release</title>
 <!--  <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet"> -->
 <!-- <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">  -->
+
+
+<!-- <script src="https://editor.datatables.net/extensions/Editor/js/dataTables.editor.min.js" type="text/javascript"></script> -->
 <script>
+
 $(document).ready(function() {
+	
     var table = $('#releaseInfo').DataTable( {
            "columnDefs": [ {
             "targets": -1,
             "data": null,
-            "defaultContent": "<button>Delete</button>"
+            "defaultContent": '<button id="edit">Edit</button> / <button id="delete">Delete</button>'
         } ]
     } );
+    
+    $('#releaseInfo tbody').on( 'click', 'link', function (e) {
+    	 var data = table.row( $(this).parents('tr') ).data();
+    	 alert("hello");
+    });
+    
+    
+    
  
     $('#releaseInfo tbody').on( 'click', 'button', function (e) {
         var data = table.row( $(this).parents('tr') ).data();
-        var result = confirm("Are you sure?");
-        if (result) {
-        	 table.row($(this).parents('tr')).remove().draw( false );
-        	 //document.location.href = '${pageContext.request.contextPath}/ArtifactVersion';
-        	 //e.preventDefault();
-        	 //alert(data[0])
-        	 $.ajax({
-                 type:"POST",
-                 data: { 'id': data[0], 'action':'deleteRelease' },
-                 url : '${pageContext.request.contextPath}/myservlet',
-                 dataType: "text",
-                 success: function(data) {
-                   alert('success');  // this alert is not working
-                   location.reload();
-                 },
-                 error: function(data) {
-                     alert('error');
-                 }
-             });
-       
-        }        
+        alert(this.id);
+        
+ 
+        if(this.id == "delete")
+    	{
+	        if(data[1] == "Yes")      
+	        	{
+	        		alert("You are deleting a current release");
+	        		//$(".iframe").colorbox({ iframe:true, innerWidth:"80%", innerHeight:"80%", href:"ArtifactVersion"});
+	        		$.colorbox({width:"900px", height:"600px", iframe:true, href:"manageCurrentRelease"});
+	        	}
+	        else
+	        	{        
+		        var result = confirm("Are you sure?");
+		        if (result) {
+		        	 table.row($(this).parents('tr')).remove().draw( false );
+		        	 //document.location.href = '${pageContext.request.contextPath}/ArtifactVersion';
+		        	 //e.preventDefault();
+		        	 //alert(data[0])
+		        	 $.ajax({
+		                 type:"POST",
+		                 data: { 'id': data[0], 'action':'deleteRelease' },
+		                 url : '${pageContext.request.contextPath}/myservlet',
+		                 dataType: "text",
+		                 success: function(data) {
+		                   alert('success');  // this alert is not working
+		                   location.reload();
+		                 },
+		                 error: function(data) {
+		                     alert('error');
+		                 }
+		             });
+		       
+		        	} 
+	       		}
+    	}
+
+        
+
     } );
     
     //Add row
@@ -56,8 +87,7 @@ $(document).ready(function() {
             	}
         } );
         
-        //alert("counter: " + counter );
-        
+      
         if ( (counter >= 1  &&  $('#select_isCurrentRelease').val() != "Yes") || ( counter == 0 ))
 	        {
 		        t.row.add( [
@@ -121,13 +151,16 @@ $(document).ready(function() {
        </thead>
        <tbody> 
       		<%        
-              for (releaseInfo r: queryDB.getReleaseInfo()){ %>              
+      			Integer count = 0;              
+      			for (releaseInfo r: queryDB.getReleaseInfo()){       				
+              	%>              
                     <tr>
 	                    <td><%=r.getReleaseNumber()%></td>
 	                    <td><%=r.getIsCurrentRelease()%></td>
+	                    <%-- <td><input type="text" id="row-<%=count%>" name="row-<%=count%>" value="<%=r.getIsCurrentRelease()%>"></td> --%>
 	                    <td></td>
                     </tr>                	
-       		<% } %>
+       		<% count = count + 1;} %>
    		</tbody>
 </table>
      

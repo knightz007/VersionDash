@@ -16,14 +16,14 @@ import com.dash.beans.UserAccount;
 /**
  * Servlet implementation class SetCurrentRelease
  */
-@WebServlet("/SetCurrentRelease")
-public class SetCurrentRelease extends GenericServlet {
+@WebServlet("/manageReleases")
+public class manageReleases extends GenericServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see GenericServlet#GenericServlet()
      */
-    public SetCurrentRelease() {
+    public manageReleases() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,7 +41,7 @@ public class SetCurrentRelease extends GenericServlet {
 		if (loginedUser != null) {
 			request.setAttribute("user", loginedUser);
 			
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/setCurrentRelease.jsp");
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/manageReleases.jsp");
 		    dispatcher.forward(request, response);	
         }
 		else

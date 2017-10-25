@@ -24,11 +24,11 @@
             <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
               <i class="fa fa-fw fa-wrench"></i>
               <span class="nav-link-text">
-                Components</span>
+                Administration</span>
             </a>
             <ul class="sidenav-second-level collapse" id="collapseComponents">
               <li>
-                <a href="SetCurrentRelease">Set current release</a>
+                <a href="manageReleases">Manage Release</a>
               </li>
               <li>
                 <a href="#">Update release artifacts</a>
