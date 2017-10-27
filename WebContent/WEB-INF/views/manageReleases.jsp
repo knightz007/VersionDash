@@ -9,6 +9,7 @@
 <script>
 
 $(document).ready(function() {
+
 	
     var table = $('#releaseInfo').DataTable( {
            "columnDefs": [ {
@@ -20,7 +21,7 @@ $(document).ready(function() {
     
     $('#releaseInfo tbody').on( 'click', 'link', function (e) {
     	 var data = table.row( $(this).parents('tr') ).data();
-    	 alert("hello");
+    	 //alert("hello");
     });
     
     
@@ -28,16 +29,18 @@ $(document).ready(function() {
  
     $('#releaseInfo tbody').on( 'click', 'button', function (e) {
         var data = table.row( $(this).parents('tr') ).data();
-        alert(this.id);
+        //alert(this.id);
         
  
         if(this.id == "delete")
     	{
 	        if(data[1] == "Yes")      
 	        	{
-	        		alert("You are deleting a current release");
+	        		//alert("You are deleting a current release");
 	        		//$(".iframe").colorbox({ iframe:true, innerWidth:"80%", innerHeight:"80%", href:"ArtifactVersion"});
-	        		$.colorbox({width:"900px", height:"600px", iframe:true, href:"manageCurrentRelease"});
+	        		//$.colorbox({width:"900px", height:"600px", iframe:true, href:"manageCurrentRelease?action=editRelease&window=delete&release=" +data[0] });
+	        		$.colorbox({width:"900px", height:"600px", iframe:true, escKey:false, href:"manageCurrentRelease?action=editRelease&window=delete&release=" +data[0], overlayClose:false,onClosed:function() { location.reload(true); } });
+	        		//location.reload();
 	        	}
 	        else
 	        	{        
@@ -50,10 +53,10 @@ $(document).ready(function() {
 		        	 $.ajax({
 		                 type:"POST",
 		                 data: { 'id': data[0], 'action':'deleteRelease' },
-		                 url : '${pageContext.request.contextPath}/myservlet',
+		                 url : '${pageContext.request.contextPath}/manageReleases',
 		                 dataType: "text",
 		                 success: function(data) {
-		                   alert('success');  // this alert is not working
+		                   //alert('success'); 
 		                   location.reload();
 		                 },
 		                 error: function(data) {
@@ -98,10 +101,10 @@ $(document).ready(function() {
 	        	 $.ajax({
 	                 type:"POST",
 	                 data: { 'id': $('#input_release').val(), 'IsCurrentRelease': $('#select_isCurrentRelease').val() , 'action':'addRelease' },
-	                 url : '${pageContext.request.contextPath}/myservlet',
+	                 url : '${pageContext.request.contextPath}/manageReleases',
 	                 dataType: "text",
 	                 success: function(data) {
-	                   alert('success'); 
+	                   //alert('success'); 
 	                   location.reload();
 	                 },
 	                 error: function(data) {
@@ -114,10 +117,12 @@ $(document).ready(function() {
         	{
         		alert("A current release is already set. Please update/delete the existing release before adding this.");
         	}       
-    } ); 
-    
+    } );   
+
     
 } );
+
+
 </script>
 
 </head>
