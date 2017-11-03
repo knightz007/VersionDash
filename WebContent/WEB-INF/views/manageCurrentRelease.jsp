@@ -36,7 +36,7 @@ alert("Hello");
 			<input type="button" id="btn_setCurrentRelease" value="Add">		
         </div> -->
      
-       <% if(window.equals("delete")) { %>
+       <%  if(window.equals("delete")) { %>
         <div class="card-body">  
        
         <b>You are deleting the current release. Please set a new current release before proceeding.</b>
@@ -49,14 +49,17 @@ alert("Hello");
 			<% } %> 
 		</select>
 		<%-- <label for="input_CurrentRelease">Release to delete: <%=release%></label> --%>
+		<input type="hidden" name="formAction" id="formAction" value="delete" />
 		<input type="hidden" name="release" id="releaseToDelete" value="<%=release%>" />
+		
         
 			 &#160; &nbsp;&#160; &nbsp;			
 			<input type="submit" id="btn_setCurrentRelease" value="Set Current Release" >	
 			
 		
         </div>
-        <% } %>
+        <% } %>        
+        
        
       </div>
 	</form>

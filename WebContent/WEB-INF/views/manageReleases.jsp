@@ -15,7 +15,7 @@ $(document).ready(function() {
            "columnDefs": [ {
             "targets": -1,
             "data": null,
-            "defaultContent": '<button id="edit">Edit</button> / <button id="delete">Delete</button>'
+            "defaultContent": '<button id="delete">Delete</button>'
         } ]
     } );
     
@@ -67,6 +67,15 @@ $(document).ready(function() {
 		        	} 
 	       		}
     	}
+/*         else if(this.id == "edit")
+        	{
+        	alert("Its edit")
+        	if(data[1] == "Yes")      
+	        	{
+	        		$.colorbox({width:"900px", height:"600px", iframe:true, escKey:false, href:"manageCurrentRelease?action=editRelease&window=edit&release=" +data[0], overlayClose:false,onClosed:function() { location.reload(true); } });	        		
+	        	}
+        	
+        	} */
 
         
 
@@ -135,8 +144,44 @@ $(document).ready(function() {
           <li class="breadcrumb-item">
             <a href="ArtifactVersion">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">Set current release</li>
+          <li class="breadcrumb-item active">Manage Release</li>
         </ol>
+        
+        
+        <div class="card mb-3">
+		<div class="card-header">
+   		<i class="fa fa-table"></i>
+        <b>Set Current Release</b>
+        </div>
+     
+        <div class="card-body">  
+        <%String SetReleaseMessage = (String)request.getAttribute("SetReleaseMessage"); %>
+        		<% if (SetReleaseMessage != null && ! SetReleaseMessage.isEmpty())
+		{ %>		
+			<h4><label><%=SetReleaseMessage%></label> </h4>
+		<%} else {%>
+        <form id="setCurrentReleaseForm" action="manageReleases"  method="POST">    
+        <label for="input_CurrentRelease">Enter release to be set as current:</label> 
+  		<!--  <input type="text" id="input_CurrentRelease"> -->
+        <select id="select_CurrentRelease" name="select_CurrentRelease">
+			<% String current_release= queryDB.getCurrentRelease();
+			for (releaseInfo r: queryDB.getReleaseInfo()){ 	%>            
+				 <option value="<%=r.getReleaseNumber()%>"><%=r.getReleaseNumber()%></option>				 
+			<% } %> 
+		</select>
+		
+					
+        	<input type="hidden" name="release" id="currentReleaseToUnset" value="<%=current_release%>" />
+			 &#160; &nbsp;&#160; &nbsp;			
+			<input type="submit" id="btn_setCurrentRelease" value="Set Current Release" >		
+		</form>
+		<%} %>
+        </div>       
+      </div>
+        
+        
+        
+        
         
      <!--    <button id="button">Delete</button> -->
         <div class="card mb-3">

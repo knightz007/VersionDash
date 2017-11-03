@@ -299,6 +299,29 @@ public class queryDB {
 		}
 	    return releaseInfoList;
 	  }
+	
+	public static String getCurrentRelease() throws SQLException {
+		 
+		 Connection conn;
+		 String current_release="";
+			try {
+			conn = DbConnector.getConnection();
+					
+	      String sql = "select release_number from testdb.releaselist WHERE IsCurrentRelease='Yes'";            
+	 
+	      PreparedStatement pstm = conn.prepareStatement(sql);
+	      ResultSet rs = pstm.executeQuery();
+	      
+	      while(rs.next()) {
+	    	 current_release = rs.getString("release_number");   	    	 
+	      }	      
+	  
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    return current_release;
+	  }
 
 
 }
