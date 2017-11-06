@@ -36,11 +36,7 @@ $(document).ready(function() {
     	{
 	        if(data[1] == "Yes")      
 	        	{
-	        		//alert("You are deleting a current release");
-	        		//$(".iframe").colorbox({ iframe:true, innerWidth:"80%", innerHeight:"80%", href:"ArtifactVersion"});
-	        		//$.colorbox({width:"900px", height:"600px", iframe:true, href:"manageCurrentRelease?action=editRelease&window=delete&release=" +data[0] });
 	        		$.colorbox({width:"900px", height:"600px", iframe:true, escKey:false, href:"manageCurrentRelease?action=editRelease&window=delete&release=" +data[0], overlayClose:false,onClosed:function() { location.reload(true); } });
-	        		//location.reload();
 	        	}
 	        else
 	        	{        

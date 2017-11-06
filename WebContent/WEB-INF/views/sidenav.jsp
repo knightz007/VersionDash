@@ -31,7 +31,7 @@
                 <a href="manageReleases">Manage Release</a>
               </li>
               <li>
-                <a href="#">Update release artifacts</a>
+                <a href="SetCertifiedVersion">Set Certified Version</a>
               </li>
             </ul>
           </li>
