@@ -93,7 +93,7 @@ function Submit(value)
            <tr>
                <th><u>Release</u></th>
                <th><u>Component</u></th>
-               <th><u>Certified Artifact Version</u></th>    
+               <th><u>Stage/Certified Artifact Version</u></th>    
            </tr>
        </thead>
        <tbody> 
