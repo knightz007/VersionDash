@@ -8,21 +8,11 @@
         var x = $(this).val();		
   	  $('#hiddenRelease').val(x);	
   	    }); 
-    
-   
-    
+
     var table = $('#CertifiedVersionTable').DataTable();  
-   // table.clear();
-    //table.draw();
-    
     
     $('#btn_setCertifiedVersion').click( function() {
         var data = table.$('input, select').serialize();
-        /* alert(
-            "The following data would have been submitted to the server: \n\n"+
-            data.substr( 0, 120 )+'...'
-        ); */
-        
         var image = "loader/loader1.gif";
         $('#loading').html("<img src='"+image+"' />");
         
@@ -33,35 +23,19 @@
          cache: false,
          dataType: "text",
          success: function(data) {
-           //alert(data.url); 
-           //$("#result").html('Updated Successfully');
-           //location.reload();
-           //$('#loading').html("").hide();
            setTimeout(myTimer, 1500);
-          // $("#loading").html('Updated Successfully');
-           
-           //table.fnDraw();
-           //$('#CertifiedVersionTable').DataTable().ajax.reload();
-           //location.reload();
-         },
+           },
          error: function(data) {
         	 $("#result").html('Could NOT update. There was a problem.');
          }
      });    	 
-        
-       // return false;
+
     } );
     
     function myTimer() {
-        //var d = new Date();
-        //document.getElementById("demo").innerHTML = d.toLocaleTimeString();
     	$("#loading").html('Updated Successfully');        
-    }
-    
-  // $('.certifiedVersionInput').val("");
-    
+    }    
 });
-
 
 function Submit(value)
 {    
@@ -96,14 +70,7 @@ function Submit(value)
         
       	
 	        <label for="input_release">Select the release:</label> 
-<%-- 	     <select id="input_release" name="input_release">
-			<% String current_release= queryDB.getCurrentRelease();
-			for (releaseInfo r: queryDB.getReleaseInfo()){ 	%>            
-				 <option value="<%=r.getReleaseNumber()%>"><%=r.getReleaseNumber()%></option>				 
-			<% } %> 
-		</select> --%>
-		
-		
+
 		<select id="select_release" name="select_release" onchange="Submit(this.value);">
 		<% for (releaseInfo r: queryDB.getReleaseInfo()){
 		 String selected = "";
@@ -113,21 +80,13 @@ function Submit(value)
 			 <option value="<%=r.getReleaseNumber()%>" <%=selected%>><%=r.getReleaseNumber()%></option>
 		
 		<% } %> 
-		</select>
-		
-		
-	        &#160; &nbsp;&#160; &nbsp;	
-	        	
+		</select>	
+	        &#160; &nbsp;&#160; &nbsp;	        	
 		   <input type="button" id="btn_setCertifiedVersion" value="SetCertifiedVersion">			
 			  &#160; &nbsp;&#160; &nbsp;
 			<label id="loading"></label>
         </div>
-		
-	
 		<div class="card-body">
-	
-			
-	
 		<div class="table-responsive">
        <table id="CertifiedVersionTable" class="table table-bordered" width="100%" cellspacing="0">
 		<thead>
@@ -157,17 +116,13 @@ function Submit(value)
 </table>
      
    		</div>
-</div>
-        
+</div>        
         <input type="hidden" name="selectedValue" id="hiddenRelease" value=""/>
     </form>
         
-        </div>      
-         
+        </div>          
+ </div> 
  </div>
- 
- </div>
- 
  
  <script>	
 window.onload = function(){  
