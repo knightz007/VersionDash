@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 import com.dash.apputil.UserUtil;
 import com.dash.beans.UserAccount;
 import com.dash.dbutil.DbConnector;
-import com.google.gson.JsonObject;
 
 /**
  * Servlet implementation class SetCertifiedVersion
@@ -65,17 +64,12 @@ public class SetCertifiedVersion extends HttpServlet {
 		String data ="";
 		if(request.getParameter("data") != null &&  ! request.getParameter("data").isEmpty())
 				{
-				 data = request.getParameter("data").toString();
-			     
-			
-		
+				 data = request.getParameter("data").toString();	
 		
 		try
 		{
 		Connection conn = null;
-		PreparedStatement pstm = null;
-		
-		
+		PreparedStatement pstm = null;		
 		//System.out.println(data);		
 		
 		String[] dataArray=data.split("&");
@@ -112,10 +106,7 @@ public class SetCertifiedVersion extends HttpServlet {
 					continue;
 				}				
 			}			
-		}
-		
-		
-		
+		}	
 		
 		System.out.println("release:" + release[0]);
 		System.out.println("component:" + component[0]);
@@ -139,16 +130,7 @@ public class SetCertifiedVersion extends HttpServlet {
 			pstm.executeUpdate();				
 		}
 		
-		
-		     //  JsonObject jobj = new JsonObject();
-			//	String urlToRedirect = "/WEB-INF/views/setCertifiedVersion.jsp";
-			//	jobj.addProperty("url", urlToRedirect);
-				//jobj.put("url",urlToRedirect);
-			//	response.getWriter().write(jobj.toString());
-		//request.setAttribute("SetReleaseMessage", "Update Certified Version for " + release[0] );
-		//RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/WEB-INF/views/setCertifiedVersion.jsp");
-		//dispatcher.forward(request, response);
-		
+			
 		}
 		catch(SQLException | ClassNotFoundException e)
 			{

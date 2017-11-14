@@ -23,7 +23,7 @@ public class CheckComponent {
 		ResultSet rs_comp = null;
 		ResultSet rs_serverlist = null;
 		
-		String currentRelease = "7.13";
+		String currentRelease = "7.14";
 		String envSql = "SELECT environment FROM testdb.environmentlist";
 		String compSql = "SELECT component FROM testdb.componentlist";
 		
