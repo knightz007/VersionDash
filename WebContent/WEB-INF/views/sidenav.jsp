@@ -2,6 +2,38 @@
     pageEncoding="ISO-8859-1"%>
  <%@ page import="com.dash.beans.UserAccount"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	$('a#sidenavToggler').click(function(){
+		  $('a#hide,#sidebar').hide();
+		  $('a#show').show();
+		  $.cookie('side_cookie_hidden', 'hidden');
+		  $.cookie('side_cookie_show', null);
+		 return false;
+		});
+
+		$('a#show').click(function(){
+		  $('a#show').hide();
+		  $('a#hide,#sidebar').show();
+		  $.cookie('side_cookie_show', 'show');
+		  $.cookie('side_cookie_hidden', null);
+		 return false;
+		});
+
+		if($.cookie('side_cookie_hidden')) { 
+		$('a#show').show();
+		$('a#hide,#sidebar').hide(); 
+		   } else {
+		$('a#show').hide();
+		$('a#hide,#sidebar').show(); 
+		}
+	
+});
+</script>
+
+	
+
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
       <a class="navbar-brand" href="#">Stars Dash</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
