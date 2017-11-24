@@ -2,33 +2,52 @@
     pageEncoding="ISO-8859-1"%>
  <%@ page import="com.dash.beans.UserAccount"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+ <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	
-	$('a#sidenavToggler').click(function(){
-		  $('a#hide,#sidebar').hide();
-		  $('a#show').show();
-		  $.cookie('side_cookie_hidden', 'hidden');
-		  $.cookie('side_cookie_show', null);
-		 return false;
-		});
-
-		$('a#show').click(function(){
-		  $('a#show').hide();
-		  $('a#hide,#sidebar').show();
-		  $.cookie('side_cookie_show', 'show');
-		  $.cookie('side_cookie_hidden', null);
-		 return false;
-		});
-
-		if($.cookie('side_cookie_hidden')) { 
-		$('a#show').show();
-		$('a#hide,#sidebar').hide(); 
-		   } else {
-		$('a#show').hide();
-		$('a#hide,#sidebar').show(); 
+	var cookieValue = Cookies.get('hiddenCookie');
+	var ulClassName = $('#collapseComponents').attr('class');
+	
+   if(cookieValue == "hidden")
+		{
+		$('#page-top').removeClass('sidenav-toggled');	
 		}
 	
+   if((cookieValue == "show"))
+		
+		{		
+		$('#page-top').addClass('sidenav-toggled');	
+		} 
+	
+		
+       $('#sidenavToggler').click(function(){
+			var className = $('#page-top').attr('class');
+			
+			if (className == 'fixed-nav sticky-footer bg-dark')
+				{
+				Cookies.set('hiddenCookie', 'hidden', { expires: 1 });	
+				$('#page-top').removeClass('sidenav-toggled');	
+				 Cookies.set('hiddenCookie', 'hidden');
+				}
+			if (className == 'fixed-nav sticky-footer bg-dark sidenav-toggled')
+			{
+			Cookies.set('hiddenCookie', 'show', { expires: 1 });	
+			$('#page-top').addClass('sidenav-toggled');
+			Cookies.set('hiddenCookie', 'show');
+			}  	   	
+			
+		});
+      
+       $('#collapseComponents').on('click', function (event) {
+    	   if (event.target != this) {    	     
+				$('#page-top').removeClass('sidenav-toggled');	
+				 Cookies.set('hiddenCookie', 'hidden');
+    	   } else {
+    	     //alert('You actually clicked #container itself.');
+    	   }
+    	 }); 
+
 });
 </script>
 

@@ -2,6 +2,8 @@
 <%@ page import="com.dash.beans.releaseInfo,com.dash.beans.releaseInfo,com.dash.apputil.queryDB"%>
 <title>Set Certified Version</title>
 
+
+
 <script>
  $(document).ready(function() {
     $("#select_release").change(function () {
@@ -43,6 +45,8 @@ function Submit(value)
     document.getElementById("certifiedArtifactForm").submit();
 }
 
+
+
 </script>
 
 </head>
@@ -59,7 +63,7 @@ function Submit(value)
         </ol>
         
         
-      <div class="card mb-3">
+      <div class="card mb-3">      
 		<div class="card-header">
    		<i class="fa fa-table"></i>
         <b>Set Certified Version</b>
