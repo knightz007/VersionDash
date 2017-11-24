@@ -173,6 +173,18 @@ $(document).ready(function() {
    			$('#headingOne').addClass('collapsed');
 	}
     
+    $( "#headingOne" ).click(function() {
+    	$('#collapseOne').collapse('toggle');
+    	});
+    
+    $( "#headingTwo" ).click(function() {
+    	$('#collapseTwo').collapse('toggle');
+    	});
+    
+    $( "#headingThree" ).click(function() {
+    	$('#collapseThree').collapse('toggle');
+    	});
+    
 } );
 
 </script>
