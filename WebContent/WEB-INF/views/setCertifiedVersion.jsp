@@ -86,7 +86,7 @@ function Submit(value)
 		<% } %> 
 		</select>	
 	        &#160; &nbsp;&#160; &nbsp;	        	
-		   <input type="button" id="btn_setCertifiedVersion" value="SetCertifiedVersion">			
+		   <input type="button" id="btn_setCertifiedVersion" value="SetCertifiedVersion" class="btn btn-primary btn-sm">			
 			  &#160; &nbsp;&#160; &nbsp;
 			<label id="loading"></label>
         </div>

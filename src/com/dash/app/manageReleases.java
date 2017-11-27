@@ -187,7 +187,7 @@ public class manageReleases extends GenericServlet {
 				pstm = conn.prepareStatement(unSetReleaseSql);
 				pstm.executeUpdate();
 		
-				message.append(release_number_current +  " set as current release." +  release_number_toUnset + " has been updated.");
+				message.append(release_number_current +  " set as current release.");
 				request.setAttribute("SetReleaseMessage", message.toString());
 				conn.close();
 

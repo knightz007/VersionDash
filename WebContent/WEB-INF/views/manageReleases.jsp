@@ -27,7 +27,7 @@ $(document).ready(function() {
            "columnDefs": [ {
             "targets": -1,
             "data": null,
-            "defaultContent": '<button id="delete">Delete</button>'
+            "defaultContent": '<button id="delete" class="btn btn-primary btn-sm">Delete</button>'
         } ]
     } );
     
@@ -122,7 +122,12 @@ $(document).ready(function() {
         	{
         		alert("A current release is already set. Please update/delete the existing release before adding this.");
         	}       
-    } );   
+    } ); 
+    
+    
+    $( "#SetReleaseDone" ).click(function() {
+    	window.location.href = window.location.href;
+    	});
     
 
     $('#collapseOne').on('show.bs.collapse', function () {
@@ -151,7 +156,7 @@ $(document).ready(function() {
 
    	
    	var cookieValue=Cookies.get('tabCookie');
-    if(cookieValue == "showTabOne")
+    if(cookieValue == "showTabOne" || cookieValue == null)
     	{
    			$('#collapseOne').collapse('show');
    			$('#headingOne').removeClass('collapsed');
@@ -215,13 +220,17 @@ $(document).ready(function() {
         	</div>
 	        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
 		        <div class="card-body">  
+		       
 			        <%String SetReleaseMessage = (String)request.getAttribute("SetReleaseMessage"); %>
 			        		<% if (SetReleaseMessage != null && ! SetReleaseMessage.isEmpty())
 					{ %>		
-						<h4><label><%=SetReleaseMessage%></label> </h4>
+						<h4><label><%=SetReleaseMessage%></label> </h4>		
+						<p style="text-align: center"><input type="button" id="SetReleaseDone" value="Done" class="btn btn-outline-primary btn-sm"/></p>				
 					<%} else {%>
-			        <form id="setCurrentReleaseForm" action="manageReleases"  method="POST">    
-			        <label for="input_CurrentRelease">Enter release to be set as current:</label> 
+					 <% String current= queryDB.getCurrentRelease(); %>
+		             <p><label>Current release is <%=current%></label></p>					
+			        <form id="setCurrentReleaseForm" action="manageReleases"  method="POST"> 			           
+			        <label for="input_CurrentRelease">Select a release to be set as current:</label> 
 			  		<!--  <input type="text" id="input_CurrentRelease"> -->
 			        <select id="select_CurrentRelease" name="select_CurrentRelease">
 						<% String current_release= queryDB.getCurrentRelease();
@@ -233,7 +242,7 @@ $(document).ready(function() {
 								
 			        	<input type="hidden" name="release" id="currentReleaseToUnset" value="<%=current_release%>" />
 						 &#160; &nbsp;&#160; &nbsp;			
-						<input type="submit" id="btn_setCurrentRelease" value="Set Current Release" >		
+						<input type="submit" id="btn_setCurrentRelease" value="Set Current Release" class="btn btn-primary btn-sm"/>		
 					</form>
 					<%} %>
 		        </div>       
@@ -300,7 +309,7 @@ $(document).ready(function() {
 				</select>
 				 &#160; &nbsp;&#160; &nbsp;
 				
-				<input type="button" id="btn_addRelease" value="Add">		
+				<input type="button" id="btn_addRelease" value="Add" class="btn btn-primary">		
 	        </div>
 			<div class="card-body">
 		<div class="table-responsive">
